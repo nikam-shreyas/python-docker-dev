@@ -9,7 +9,7 @@ password = os.environ['POSTGRES_PASSWORD']
 
 @app.route('/')
 def hello_world():
-    return 'Hello, Docker!'
+    return 'Hello, Docker!!!!'
 
 
 @app.route('/widgets')
@@ -37,7 +37,8 @@ def db_init():
     with psycopg2.connect(host="db", user="postgres", password=password, database="example") as conn:
         with conn.cursor() as cur:
             cur.execute("DROP TABLE IF EXISTS widgets")
-            cur.execute("CREATE TABLE widgets (name VARCHAR(255), description VARCHAR(255))")
+            cur.execute(
+                "CREATE TABLE widgets (name VARCHAR(255), description VARCHAR(255))")
     conn.close()
 
     return 'init database'
